@@ -83,3 +83,79 @@ let usuario: { nome: string, idade: number } = {
   idade: 27
 }
 console.log(usuario)
+
+// Alias
+type Funcionario = {
+  supervisores: string[],
+  baterPonto: (horas: number) => string
+}
+
+const colaborador: Funcionario = {
+  supervisores: ['Maria', 'Marcelo'],
+  baterPonto(x: number): string {
+    return x <= 8 ? 'Ponto Normal' : 'Fora do horario'
+  }
+}
+
+console.log(`colaborador: ${colaborador.supervisores}`)
+console.log(`colaborador: ${colaborador.baterPonto(9)}`)
+
+const colaborador2: Funcionario = {
+  supervisores: ['Paula', 'Luis'],
+  baterPonto(y: number): string {
+    return y <= 8 ? 'Ponto Normal' : 'Fora do Horário'
+  }
+}
+
+console.log(`colaborador2: ${colaborador2.supervisores}`)
+console.log(`colaborador2: ${colaborador2.baterPonto(5)}`)
+
+
+// Múltiplos Tipos com Union Types
+
+let nota: number | string;
+
+nota = 10;
+console.log(nota);
+
+nota = '10';
+console.log(nota);
+
+// Never
+function falha(msg: string): never {
+  throw new Error(msg)
+}
+
+let produto = {
+  nome: 'Sabão',
+  preco: 1,
+  validaProduto() {
+    if (!produto.nome || produto.nome.trim().length == 0) {
+      falha('Produto precisa de um nome')
+    }
+    if (produto.preco <= 0) {
+      falha('Produto necessita de um preço maior que 0')
+    }
+  }
+}
+produto.validaProduto()
+
+// Null
+
+let alturaOpcional: null | number = 12
+alturaOpcional = null
+
+type Contato = {
+  nome: string,
+  tel1: number,
+  tel2: null | number
+}
+
+const contato1: Contato = {
+  nome: 'Carol',
+  tel1:99999999,
+  tel2: null
+}
+console.log(contato1.nome)
+console.log(contato1.tel1)
+console.log(contato1.tel2)

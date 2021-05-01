@@ -68,3 +68,53 @@ var usuario = {
     idade: 27
 };
 console.log(usuario);
+var colaborador = {
+    supervisores: ['Maria', 'Marcelo'],
+    baterPonto: function (x) {
+        return x <= 8 ? 'Ponto Normal' : 'Fora do horario';
+    }
+};
+console.log("colaborador: " + colaborador.supervisores);
+console.log("colaborador: " + colaborador.baterPonto(9));
+var colaborador2 = {
+    supervisores: ['Paula', 'Luis'],
+    baterPonto: function (y) {
+        return y <= 8 ? 'Ponto Normal' : 'Fora do Horário';
+    }
+};
+console.log("colaborador2: " + colaborador2.supervisores);
+console.log("colaborador2: " + colaborador2.baterPonto(5));
+// Múltiplos Tipos com Union Types
+var nota;
+nota = 10;
+console.log(nota);
+nota = '10';
+console.log(nota);
+// Never
+function falha(msg) {
+    throw new Error(msg);
+}
+var produto = {
+    nome: 'Sabão',
+    preco: 1,
+    validaProduto: function () {
+        if (!produto.nome || produto.nome.trim().length == 0) {
+            falha('Produto precisa de um nome');
+        }
+        if (produto.preco <= 0) {
+            falha('Produto necessita de um preço maior que 0');
+        }
+    }
+};
+produto.validaProduto();
+// Null
+var alturaOpcional = 12;
+alturaOpcional = null;
+var contato1 = {
+    nome: 'Carol',
+    tel1: 99999999,
+    tel2: null
+};
+console.log(contato1.nome);
+console.log(contato1.tel1);
+console.log(contato1.tel2);
